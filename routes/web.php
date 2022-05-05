@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if(Auth::user()){//rah authentifié les user
+    if(Auth::user()){//rah authentifié les user SAD mbola connecté
         return view('home');
     } else {
         return view('auth/login');

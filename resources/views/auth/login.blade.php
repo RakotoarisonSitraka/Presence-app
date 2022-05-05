@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @extends('icon.IconTitre')
-
+@section('titre')
+Connexion d'administrateur
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

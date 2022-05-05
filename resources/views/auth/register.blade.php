@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @extends('icon.IconTitre')
+@section('titre')
+    Ajout d'administrateur
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -67,12 +70,12 @@
                                     {{ __('Enregistrer') }}
                                 </button>
                             </div>
-                        </div>
+                        </div><br>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Enregistrer') }}
-                                </button>
+                                <a href="/home" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="left" title="retour à Accueil">
+                                    Annuler
+                                </a>
                             </div>
                         </div>
 
