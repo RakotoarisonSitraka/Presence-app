@@ -24,6 +24,8 @@ Route::get('/', function () {
 
 
 
+Route::get('/modifier',[App\Http\Controllers\HomeController::class,'modifier']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

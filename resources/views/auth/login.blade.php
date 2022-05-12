@@ -8,7 +8,7 @@ Connexion d'administrateur
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h1>Authentification</h1></div>
+                <div class="card-header"><h1>NOGAE Group</h1></div><br>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -25,7 +25,7 @@ Connexion d'administrateur
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div><br>
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Mot de passe') }}</label>

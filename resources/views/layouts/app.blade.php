@@ -11,7 +11,11 @@
     <title>@yield('titre')</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+    <script src="{{ asset('js/scripts.js') }}"></script>
+
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.js')}}">
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,6 +23,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+
 </head>
 
 <body>
@@ -77,6 +83,12 @@
         @yield('content')
     </main>
 </div>
+  {{-- <script src="{{ asset('js/popper.min.js') }}"></script> --}}
+  {{-- <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script> --}}
+  {{-- <script src="{{ asset('js/bootstrap.bundle.min.js') }}"> --}}
+  @yield('scripts')
+      
+
 </body>
 
 </html>
