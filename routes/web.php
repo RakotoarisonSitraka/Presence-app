@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/modifier',[App\Http\Controllers\HomeController::class,'modifier']);
+Route::post('/modifier/{id}',[App\Http\Controllers\HomeController::class,'modifier'])->name('modifier');
 
 Auth::routes();
 

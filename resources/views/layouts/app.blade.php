@@ -11,7 +11,7 @@
     <title>@yield('titre')</title>
 
     <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
 
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.js')}}">
@@ -31,9 +31,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                {{-- <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a> --}}
+                @if(Auth::user())  {{--raha authentifié--}}
+                <a class="navbar-brand" href="">
+                    NOGAE Group
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -49,7 +50,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        @if(Auth::user())
+                       
                             @if(Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="/register">{{ __('Ajouter admin') }}</a>
@@ -62,11 +63,15 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                               <center>
+                                <button type="button" data-toggle="modal" data-target="#Modif" class="btn btn-success">Modifier le compte</button><br><br>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Supp">Supprimer le compte</button><br><br>
+                                <a class="btn btn-light" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Se deconnecter') }}
                                 </a>
-
+                               </center>
+                                
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                     class="d-none">
                                     @csrf

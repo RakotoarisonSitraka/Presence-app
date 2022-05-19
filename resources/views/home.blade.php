@@ -19,8 +19,10 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        
                         @if (Auth::user())
-                        <h2>Bienvenue <strong> {{ Auth::user()->name }}</strong> </h2><br>
+                        <h2>Bienvenue <strong> {{ Auth::user()->name }}</strong> Admin Connecté</h2><br>
+                        @endif
                         <table class="table">
                             <tr class="table-primary">
                                 <td><strong>
@@ -39,24 +41,27 @@
                                     </strong></td>
                                 <td></td>
                             </tr>
-                            <tr>
-                               
-                            <tr class="table-light">
-                                <td><strong>
-                                        <h5> {{ Auth::user()->id }}</h5>
-                                    </strong></td>
-                                <td><strong>
-                                        <h5> {{ Auth::user()->name }}</h5>
-                                    </strong></td>
-                                <td><strong>
-                                        <h5>{{ Auth::user()->email }}</h5>
-                                    </strong></td>
-                                <td><button type="button" data-toggle="modal" data-target="#Modif" class="btn btn-success">Modifier</button></td>
-                                <td><a class="btn btn-danger">Supprimer</a></td>
-                            </tr>
-                            @endif
-
-                            </tr>
+                        @if (is_countable($users) && count($users)!=0)
+                          @foreach ($users as $user)
+                            <tr class="table-light">    
+                                       <td><strong>{{ $user->id}}</strong></td>
+                                       <td><strong>{{ $user->name}}</strong></td>
+                                       <td><strong>{{ $user->email}}</strong></td>
+                                    @endforeach
+                            </tr>                
+                                @endif
+                                {{-- <td><strong> --}}
+                                        {{-- <h5> {{ Auth::user()->id }}</h5> --}}
+                                    {{-- </strong></td>
+                                <td><strong> --}}
+                                        {{-- <h5> {{ Auth::user()->name }}</h5> --}}
+                                    {{-- </strong></td>
+                                <td><strong> --}}
+                                        {{-- <h5>{{ Auth::user()->email }}</h5> --}}
+                                    {{-- </strong></td> --}}
+                                {{-- <td><button type="button" data-toggle="modal" data-target="#Modif" class="btn btn-success">Modifier</button></td>
+                                <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Supp">Supprimer</button></td> --}}
+                            
                         </table>
 
                     </div>
@@ -64,26 +69,109 @@
             </div>
         </div>
 
-        {{-- Modal --}}
+        {{-- Modal de modification--}}
+        {{-- <div class="modal" tabindex="-1" role="dialog">
+         </div> --}}
             <div class="modal fade" id="Modif" tabindex="-1" role="dialog" aria-labelledby="ModifierLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1>modifier</h1>
+                            <h1>Modification</h1>
+                            {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button> --}}
+                      
                         </div>
-                        <div class="modal-body">
+                 @if (Auth::user())     
+                    <form method="POST" action="{{url('/modifier/'.Auth::user()->id)}}">
+                            @csrf
+                        <div class="modal-body">   
+                            <div class="row mb-3">
+                                <input type="hidden" value="{{ Auth::user()->id}}">
+                               <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nom') }}</label>
+                                    <div class="col-md-6">
+                                      <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{  Auth::user()->name }}" required autocomplete="name" autofocus>
+                                          @error('name')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                        @enderror
+                                    </div>
+                            </div>
+        
+                            <div class="row mb-3">
+                                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Adresse Email') }}</label>        
+                                    <div class="col-md-6">
+                                      <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ Auth::user()->email }}" required autocomplete="email" autofocus>
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                            </div>
+                            <div class="row mb-3">
+                               <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Mot de passe') }}</label>
+                                  <div class="col-md-6">
+                                     <input id="password" type="password"  class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                  </div>
+                            </div>
+        
+                            <div class="row mb-3">
+                               <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirmation mot de passe') }}</label>   
+                                  <div class="col-md-6">
+                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                  </div>
+                            </div>
+        
+                                {{-- <div class="row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Enregistrer') }}
+                                        </button>
+                                    </div>
+                                </div><br>
+                              --}}
+        
+                                {{-- <a href="/home">Back</a> --}}
+                            
 
                            
                         </div>
-                        <div class="modal-footer">
-                            <button type="button"  class="btn btn-info">Enregistrer</button>
-                            <button type="button" class="btn btn-info">Quitter</button>
-                        </div>
+                                <div class="modal-footer">
+                                    <button type="submit"  class="btn btn-primary">Enregistrer</button>
+                                    <button type="submit" class="btn btn-warning" data-dismiss="modal">Annuler</button>
+                                </div>
                     </div>
+                </form>
+              @endif  
                 </div>
         </div>
         
-        {{-- fin modal --}}
+        {{-- fin modal modif--}}
+
+
+        {{-- modal suppression--}}
+        <div class="modal fade" id="Supp" tabindex="-1" role="dialog" aria-labelledby="SuppLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    {{-- <div class="modal-header">
+                        <h1>Suppression</h1> --}}
+                      <div class="modal-body">   
+                        Voulez vous vraiment supprimer votre compte?
+                      <div class="modal-footer">
+                            <button type="submit"  class="btn btn-danger">Oui</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Non</button>
+                        </div>
+                    </div>
+            </div> 
+        </div>              
+        {{--fin suppression--}}
        
        
       

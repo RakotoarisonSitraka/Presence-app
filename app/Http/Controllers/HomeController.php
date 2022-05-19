@@ -12,6 +12,8 @@ class HomeController extends Controller
      *
      * @return void
      */
+   
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,7 +25,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function modifier(){
-        return view('CRUDuser.modifier');
+        print("salut");
     }
     public function index()
     {
