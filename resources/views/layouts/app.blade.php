@@ -63,13 +63,41 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                               <center>
-                                <button type="button" data-toggle="modal" data-target="#Modif" class="btn btn-success">Modifier le compte</button><br><br>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Supp">Supprimer le compte</button><br><br>
+                                <center>
+                                   <div class="dropdown">
+                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                         Parametres  <span class="caret"></span>
+                                     </button><br><br>
+                                  <ul class="dropdown-menu">
+                                      <center>
+                                          <li>
+                                                <button type="button" data-toggle="modal" data-target="#Modif" class="btn btn-success">Modifier Profil</button>
+                            
+                                          </li><br>
+                                          <li>
+                                            <button type="button" data-toggle="modal" data-target="#Pass" class="btn btn-light">Mot de Passe</button>
+        
+                                      </li><br>
+
+                                          <li class="divider"></li>
+                                          <li>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Supp">Suppression</button>
+                                          </li><br><br>
+                
+                                      </center>
+                                  </ul> 
+                                  <a class="btn btn-light" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                                      {{ __('Se deconnecter') }}
+                                  </a>
+                        
+                                {{-- <button type="button" data-toggle="modal" data-target="#Modif" class="btn btn-success">Modifier</button><br><br>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Supp">Supprimer</button><br><br>
                                 <a class="btn btn-light" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Se deconnecter') }}
-                                </a>
+                                </a> --}}
+                               </div>
                                </center>
                                 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"

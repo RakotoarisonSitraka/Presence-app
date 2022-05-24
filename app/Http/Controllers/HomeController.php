@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -12,20 +13,26 @@ class HomeController extends Controller
      *
      * @return void
      */
-   
+     public function modifier(Request $request){        
+          $users=user::find(Auth::user()->id);
+            if($users){ 
+                  $users->name=$request->input('name');
+                  $users->email=$request->input('email');
+                  //   $users->password=$request->input('password');
+                  $users->save();
+                 return redirect('/home'); 
+ 
+           }else{
+              return redirect()->back();
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+      }
+    //     $users=User::find($id);
+    //     $users->name=$request->input('name');
+    //     $users->email=$request->input('email');
+    //     $users->password=$request->input('password');
+    //     $users->update();
+    //    return redirect()->back();  
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function modifier(){
-        print("salut");
     }
     public function index()
     {
