@@ -37,3 +37,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/change-Mot_De_Passe',[App\Http\Controllers\HomeController::class,'UpdatePassword'])->name('change-Mot_De_Passe');
+# rah ilay route no atao anaty  <form> dia ::>> {{url('/anaran le route ao am web.php'}}
+#fa raha ilay name no ampesaina dia ito no atao anaty <form> ::>> {{ route('le anaran le name ao am route')}} 

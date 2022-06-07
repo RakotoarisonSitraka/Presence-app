@@ -64,9 +64,8 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <center>
-                                   <div class="dropdown">
                                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                         Parametres  <span class="caret"></span>
+                                         Parametres Profil  <span class="caret"></span>
                                      </button><br><br>
                                   <ul class="dropdown-menu">
                                       <center>

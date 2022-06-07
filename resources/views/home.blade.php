@@ -21,36 +21,66 @@
                               <h3 class="modal-title" id="staticBackdropLabel">Modification mot de passe</h3>
                               {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                             </div>
-                            @if (Auth::user())     
-                                <form method="POST" action="">
+                                <form method="POST" action="{{ route('change-Mot_De_Passe') }}">
                                     @csrf
+                                    {{-- message succes --}}
+                                      {{-- @if (session('success'))
+                                         <div class="alert alert-success" role="alert">
+                                           {{ session('success') }}
+                                         </div>
+                                      @endif --}}
+                                      @if(Session::has('success')) 
+                                        <div class="alert alert-success">
+                                           {{ Session::get('success') }}
+                                        </div>
+                                      @endif
+
+                                      @if(Session::has('error')) 
+                                      <div class="alert alert-danger">
+                                          {{ Session::get('error') }}
+                                      </div>
+                                  @endif
+
                                     <div class="modal-body">
                                         <div class="row mb-3">
-                                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Nouveau Mot de passe') }}</label>
+                                            <label for="oldPassword" class="col-md-4 col-form-label text-md-end">{{ __('Ancien Mot de passe') }}</label>
                                                <div class="col-md-6">
-                                                  <input id="password" type="password"  class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                                     @error('password')
-                                                         <span class="invalid-feedback" role="alert">
-                                                             <strong>{{ $message }}</strong>
-                                                         </span>
-                                                     @enderror
+                                                  <input  type="password" class="form-control" name="oldPassword" required autocomplete="oldPassword" >
+                                                   @error('oldPassword')
+                                                    <span class="invalid-feedback" role="alert">
+                                                       <strong>{{ $message }}</strong>
+                                                    </span>
+                                                 @enderror
+             
                                                </div>
-                                         </div>
+                                         </div><br>
+                                        <div class="row mb-3">
+                                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Nouveau mot de passe') }}</label>
+                                              <div class="col-md-6">
+                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                      @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                              </div>
+                                        </div>     
+
                      
                                          <div class="row mb-3">
-                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirmation mot de passe') }}</label>   
+                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirmation ') }}</label>   
                                                <div class="col-md-6">
-                                                  <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                  <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required autocomplete="password_confirmation">
                                                </div>
                                          </div>
 
                                     </div>
-                                </form>
-                            @endif
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                              <button type="button" class="btn btn-primary">Enregistrer</button>
-                            </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                      </div>
+                                </form>             
+                            {{-- @endif --}}
                           </div>
                         </div>
                       </div>
